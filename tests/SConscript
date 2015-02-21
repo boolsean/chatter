@@ -1,0 +1,11 @@
+env = Environment()
+
+env.Append(CCFLAGS=['-g'])
+env.Append(LIBS=['zmq'])
+
+
+
+env.Program(target="testZmqServer.out", source=['testZmqServer.cpp'])
+env.Program(target="testZmqClient.out", source=['testZmqClient.cpp'])
+
+
