@@ -14,8 +14,17 @@ public:
     {
     }
 
+
     void pretty() const;
+    // settors
     void set(double price, int size, int num=1, int flag=0);
+    void setPrice(double price);
+    void setSize(int size);
+    void setNum(int num);
+    void setFlag(int flag);
+
+
+    // gettors
     double getPrice() const;
     int getSize() const;
     int getNum() const;
@@ -26,7 +35,6 @@ private:
     int _size;
     int _num;
     int _flag;
-
 };
 
 class MarketDataSide
@@ -60,8 +68,8 @@ public:
         MAX
     };
 
-    MarketData(const std::string& symbol="N/A")
-    :   _symbol(symbol)
+    MarketData(const std::string& symbol="N/A", const std::string& secType="?")
+    :   _version(1), _symbol(symbol), _secType(secType)
     {
     }
 
@@ -69,14 +77,18 @@ public:
     void addQuote(SIDE side, double price, int size, int num=1, int flag=0);
     void clearQuotes();
     void clearQuotes(SIDE side);
+    bool pack(char* buf);
+    int unpack(const char* buf, MarketData& md);
     void pretty(bool printFlag=false) const;
-    bool serialize(char* buf);
+    std::string getSymbol() const;
 
 protected:
     void prettyHelp(const MarketDataQuote* quote, bool printFlag) const;
 
 private:
+    int _version;
     std::string _symbol;
+    std::string _secType;
     MarketDataSide _marketDatas[MAX];
 };
 

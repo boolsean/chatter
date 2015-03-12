@@ -1,5 +1,5 @@
 env = Environment()
 
-sources = ['market.cpp','marketdata.cpp']
+sources = ['market.cpp','marketdata.cpp', 'ohlcdata.cpp']
 
 env.StaticLibrary('data', sources)

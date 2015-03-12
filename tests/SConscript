@@ -5,7 +5,7 @@ env.Append(CPPPATH=['../../nt'])
 env.Append(CPPPATH=['../../data'])
 env.Append(LIBPATH=['../../nt/bin'])
 env.Append(LIBPATH=['../../data/bin'])
-env.Append(LIBS=['zmq', 'nt', 'data'])
+env.Append(LIBS=['zmq', 'nt', 'data', 'boost_date_time'])
 
 
 

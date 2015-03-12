@@ -1,4 +1,5 @@
 #include "marketdata.h"
+#include "ohlcdata.h"
 #include <iostream>
 
 int main()
@@ -10,7 +11,7 @@ int main()
 
     std::cout << "*******************" << std::endl;
 
-    gdm::MarketData d;
+    gdm::MarketData d("SPY");
     d.addQuote(gdm::MarketData::BID, 100, 200);
     d.addQuote(gdm::MarketData::BID, 99.98, 500);
     d.addQuote(gdm::MarketData::ASK, 100.10, 100);
@@ -22,10 +23,17 @@ int main()
     d.addQuote(gdm::MarketData::TRADE, q);
 
     d.pretty(false);
+    d.pretty(true);
 
     d.clearQuotes();
     std::cout << "*******************" << std::endl;
 
     d.pretty();
+
+
+    gdm::OHLCData daily("AXP", "2015/01/22", 120, 130.434, 99.02, 98, 98, 1000219);
+    daily.pretty();
+    gdm::OHLCData daily2("AXP", "2015/01/23", 120, 130.434, 99.02, 98, 98, 1000300);
+    daily2.pretty();
     return 0;
 }

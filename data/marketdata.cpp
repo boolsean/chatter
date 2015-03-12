@@ -20,6 +20,26 @@ void MarketDataQuote::set(double price, int size, int num, int flag)
     _flag = flag;
 }
 
+void MarketDataQuote::setPrice(double price)
+{
+    _price = price;
+}
+
+void MarketDataQuote::setSize(int size)
+{
+    _size = size;
+}
+
+void MarketDataQuote::setNum(int num)
+{
+    _num = num;
+}
+
+void MarketDataQuote::setFlag(int flag)
+{
+    _flag = flag;
+}
+
 double MarketDataQuote::getPrice() const
 {
     return _price;
@@ -129,14 +149,15 @@ void MarketData::clearQuotes(MarketData::SIDE side)
 
 void MarketData::prettyHelp(const MarketDataQuote* quote, bool printFlag) const
 {
-    const static std::string space(40, ' ');
-    const static std::string spaceNoFlag(27, ' ');
+    const static std::string space(36, ' ');
+    const static std::string spaceNoFlag(25, ' ');
+
     if(quote != NULL) {
-        std::cout << std::setw(8) << quote->getSize() << "@"
-            << std::setw(12) << std::fixed << std::setprecision(5) << quote->getPrice() << " ["
-            << std::setw(3) << quote->getNum() << "]";
+        std::cout << std::setw(6) << quote->getSize() << "@"
+            << std::setw(12) << std::fixed << std::setprecision(5) << quote->getPrice() << " |"
+            << std::setw(3) << quote->getNum() << "|";
         if(printFlag) {
-            std::cout << " f=" << std::setw(10) << quote->getFlag();
+            std::cout << " f=" << std::setw(8) << quote->getFlag();
         }
     }
     else {
@@ -157,7 +178,7 @@ void MarketData::pretty(bool printFlag) const
     const MarketDataSide& asks = _marketDatas[ASK];
     const MarketDataSide& trades = _marketDatas[TRADE];
 
-    std::cout << _symbol << "\n";
+    std::cout << std::setw(8) << _symbol << " " << _secType << "\n";
     while(more == true) {
         more = false;
         if(bids.getNumLevels() > curIdx) {
@@ -193,8 +214,18 @@ void MarketData::pretty(bool printFlag) const
     std::cout << std::endl;
 }
 
-bool MarketData::serialize(char* buf)
+bool MarketData::pack(char* buf)
 {
+}
+
+int MarketData::unpack(const char* buf, MarketData& md)
+{
+    return -1;
+}
+
+std::string MarketData::getSymbol() const
+{
+    return _symbol;
 }
 
 }
