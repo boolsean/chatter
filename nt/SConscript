@@ -1,0 +1,5 @@
+env = Environment()
+
+sources = ['Subscriber.cpp']
+
+env.StaticLibrary('nt', sources)
