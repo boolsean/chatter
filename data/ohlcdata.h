@@ -60,10 +60,12 @@ public:
     {
     }
 
+    // setttors
+    const std::string& getSymbol()  const   { return _symbol; }
     void addData(const OHLC& data);
-    void pretty() const;
 
     const date2ohlc_t& getDataMap() const;
+    void pretty() const;
 
 protected:
 private:
