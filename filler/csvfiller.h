@@ -18,6 +18,7 @@ protected:
 
 
 private:
+    std::vector<std::string>& tokenize(const std::string& line, char delim, std::vector<std::string>& toks);
 
     std::string _fileName;
     bool _getOHLC;

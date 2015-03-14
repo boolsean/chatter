@@ -1,5 +1,10 @@
 #include "csvfiller.h"
 #include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <stdlib.h> // atof
+
 
 namespace gdm
 {
@@ -7,7 +12,6 @@ namespace gdm
 CSVFiller::CSVFiller(const std::string& fileName)
     :   _fileName(fileName)
 {
-    std::cout << "CSVFiller CTOR" << std::endl;
 }
 
 bool CSVFiller::fill(OHLCData& md)
@@ -16,13 +20,54 @@ bool CSVFiller::fill(OHLCData& md)
         return false;
     }
 
-    gdm::OHLC d2("2015/01/23", 120, 130.434, 99.02, 98, 98, 1000300);
-    gdm::OHLC d("2015/01/22", 120, 130.434, 99.02, 98, 98, 1000219);
+    std::ifstream inStream(_fileName);
+    if(inStream == false) {
+        std::cerr << "failed to open file:" << _fileName << " for read"
+            << std::endl;
+        return false;
+    }
 
-    md.addData(d);
-    md.addData(d2);
+    std::cout << "parsing csvfile:" << _fileName << std::endl;
+
+    std::string line;
+    std::vector<std::string> toks;
+
+    // skip first line
+    std::getline(inStream, line);
+
+    while(std::getline(inStream, line)) {
+        toks.clear();
+        tokenize(line, ',', toks);
+
+        if(toks.size() != 7) {
+            std::cerr << "not expected token count:" << toks.size()
+                << " line:" << line << std::endl;
+            continue;
+        }
+
+        std::string date = toks[0];
+        double dblOpen = atof(toks[1].c_str());
+        double high = atof(toks[2].c_str());
+        double low = atof(toks[3].c_str());
+        double close = atof(toks[4].c_str());
+        int64_t volume = atoll(toks[5].c_str());
+        double adjClose = atof(toks[6].c_str());
+
+        gdm::OHLC d(date, dblOpen, high, low, close, adjClose, volume);
+        md.addData(d);
+    }
 
     return true;
+}
+
+std::vector<std::string>& CSVFiller::tokenize(const std::string& line, char delim, std::vector<std::string>& toks)
+{
+    std::stringstream ss(line);
+    std::string item;
+    while(std::getline(ss, item, delim)) {
+        toks.push_back(item);
+    }
+    return toks;
 }
 
 
