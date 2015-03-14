@@ -1,3 +1,6 @@
+#ifndef GDM_OHLCDATA
+#define GDM_OHLCDATA
+
 
 #include <string>
 #include <map>
@@ -46,9 +49,9 @@ private:
 class OHLCData
 {
 public:
-    typedef std::vector<OHLC>           ohlclist_t;
-    typedef ohlclist_t::iterator        ohlclist_it_t;
-    typedef ohlclist_t::const_iterator  ohlclist_cit_t;
+    typedef std::vector<OHLC>                       ohlclist_t;
+    typedef ohlclist_t::iterator                    ohlclist_it_t;
+    typedef ohlclist_t::const_iterator              ohlclist_cit_t;
 
     typedef std::map<boost::gregorian::date, OHLC>  date2ohlc_t;
     typedef date2ohlc_t::iterator                   date2ohlc_it_t;
@@ -68,6 +71,7 @@ public:
     void pretty() const;
 
 protected:
+
 private:
     std::string     _symbol;
     ohlclist_t      _dataList;
@@ -75,3 +79,5 @@ private:
 };
 
 } // close namespace gdm
+
+#endif

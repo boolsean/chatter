@@ -1,0 +1,6 @@
+env = Environment()
+
+env.Append(CPPPATH=['../../data'])
+sources = ['csvfiller.cpp']
+
+env.StaticLibrary('filler', sources)
