@@ -31,4 +31,5 @@ const OHLCData::date2ohlc_t& OHLCData::getDataMap() const
     return _dataMap;
 }
 
+
 } // close namespace gdm

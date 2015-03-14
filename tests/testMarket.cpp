@@ -3,8 +3,30 @@
 #include "stubplayer.h"
 #include <iostream>
 
+gdm::MarketData getSample(const std::string& symbol="SPY")
+{
+    gdm::MarketData md("SPY");
+    // populate with initial quote
+    //  BID
+    md.addQuote(gdm::MarketData::BID, 101.50, 200, 3);
+    md.addQuote(gdm::MarketData::BID, 101.45, 500, 4);
+    md.addQuote(gdm::MarketData::BID, 101.40, 900, 12);
+    md.addQuote(gdm::MarketData::BID, 101.25, 1200, 20);
+    // ASK
+    md.addQuote(gdm::MarketData::ASK, 101.75, 400, 6);
+    md.addQuote(gdm::MarketData::ASK, 101.90, 700, 10);
+    md.addQuote(gdm::MarketData::ASK, 101.95, 900, 12);
+    md.addQuote(gdm::MarketData::ASK, 102.00, 2200, 20);
+
+    return md;
+}
+
 int main()
 {
+    gdm::MarketData sample = getSample("STAG");
+    sample.pretty();
+
+
     gdm::MarketDataQuote q(100000.12345, 12999, 232);
     q.pretty();
     q.set(100.8, 1);

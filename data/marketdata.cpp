@@ -154,8 +154,10 @@ void MarketData::prettyHelp(const MarketDataQuote* quote, bool printFlag) const
 
     if(quote != NULL) {
         std::cout << std::setw(6) << quote->getSize() << "@"
-            << std::setw(12) << std::fixed << std::setprecision(5) << quote->getPrice() << " |"
-            << std::setw(3) << quote->getNum() << "|";
+            << std::setw(12) << std::fixed << std::setprecision(5) << std::left
+            << quote->getPrice()
+            << std::right
+            << " |"  << std::setw(3) << quote->getNum() << "|";
         if(printFlag) {
             std::cout << " f=" << std::setw(8) << quote->getFlag();
         }
@@ -178,7 +180,7 @@ void MarketData::pretty(bool printFlag) const
     const MarketDataSide& asks = _marketDatas[ASK];
     const MarketDataSide& trades = _marketDatas[TRADE];
 
-    std::cout << std::setw(8) << _symbol << " " << _secType << "\n";
+    std::cout << std::setw(8) << std::left << _symbol << " " << _secType << std::right << "\n";
     while(more == true) {
         more = false;
         if(bids.getNumLevels() > curIdx) {
@@ -216,6 +218,7 @@ void MarketData::pretty(bool printFlag) const
 
 bool MarketData::pack(char* buf)
 {
+    return true;
 }
 
 int MarketData::unpack(const char* buf, MarketData& md)
