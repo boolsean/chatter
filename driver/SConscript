@@ -1,0 +1,5 @@
+env = Environment()
+
+sources = ['stubplayer.cpp']
+
+env.StaticLibrary('driver', sources)
