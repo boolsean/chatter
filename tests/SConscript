@@ -3,9 +3,11 @@ env = Environment()
 env.Append(CCFLAGS=['-g'])
 env.Append(CPPPATH=['../../nt'])
 env.Append(CPPPATH=['../../data'])
+env.Append(CPPPATH=['../../driver'])
 env.Append(LIBPATH=['../../nt/bin'])
 env.Append(LIBPATH=['../../data/bin'])
-env.Append(LIBS=['zmq', 'nt', 'data', 'boost_date_time'])
+env.Append(LIBPATH=['../../driver/bin'])
+env.Append(LIBS=['zmq', 'nt', 'data', 'driver', 'boost_date_time'])
 
 
 

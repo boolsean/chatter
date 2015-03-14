@@ -1,5 +1,6 @@
 #include "marketdata.h"
 #include "ohlcdata.h"
+#include "stubplayer.h"
 #include <iostream>
 
 int main()
@@ -31,9 +32,19 @@ int main()
     d.pretty();
 
 
-    gdm::OHLCData daily("AXP", "2015/01/22", 120, 130.434, 99.02, 98, 98, 1000219);
-    daily.pretty();
-    gdm::OHLCData daily2("AXP", "2015/01/23", 120, 130.434, 99.02, 98, 98, 1000300);
-    daily2.pretty();
+    gdm::OHLCData hist("AXP");
+    gdm::OHLC daily2("2015/01/23", 120, 130.434, 99.02, 98, 98, 1000300);
+    gdm::OHLC daily("2015/01/22", 120, 130.434, 99.02, 98, 98, 1000219);
+    hist.addData(daily2);
+    hist.addData(daily);
+    hist.pretty();
+
+
+    std::cout << "*****************************************" << std::endl;
+    const gdm::OHLCData::date2ohlc_t& dm = hist.getDataMap();
+    for(gdm::OHLCData::date2ohlc_cit_t it = dm.begin(); it != dm.end(); it++) {
+        it->second.pretty();
+    }
+
     return 0;
 }
