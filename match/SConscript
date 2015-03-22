@@ -1,0 +1,5 @@
+env = Environment()
+
+sources = ['centralpost.cpp']
+
+env.StaticLibrary('match', sources)

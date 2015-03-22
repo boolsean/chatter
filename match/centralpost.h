@@ -20,3 +20,5 @@ private:
 };
 
 } // close namespace gdm
+
+#endif

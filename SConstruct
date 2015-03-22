@@ -8,8 +8,10 @@ env = Environment()
 #####################################################################################
 SConscript('nt/SConscript', variant_dir='nt/bin', duplicate=0)
 SConscript('data/SConscript', variant_dir='data/bin', duplicate=0)
+SConscript('calc/SConscript', variant_dir='calc/bin', duplicate=0)
 SConscript('driver/SConscript', variant_dir='driver/bin', duplicate=0)
 SConscript('filler/SConscript', variant_dir='filler/bin', duplicate=0)
+SConscript('match/SConscript', variant_dir='match/bin', duplicate=0)
 
 
 #####################################################################################
