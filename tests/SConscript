@@ -1,6 +1,12 @@
-env = Environment()
+import glob
+Import('env')
 
-env.Append(CCFLAGS=['-g'])
+env = env.Clone()
+
+#env = Environment()
+
+#env.Append(CCFLAGS=['-g'])
+env.Append(CPPPATH=['../../util'])
 env.Append(CPPPATH=['../../calc'])
 env.Append(CPPPATH=['../../nt'])
 env.Append(CPPPATH=['../../data'])

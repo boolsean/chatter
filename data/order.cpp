@@ -62,12 +62,12 @@ void Order::pretty() const
 {
     std::cout << _symbolID
         << "|" << _symbol
-        << "|" << _price
-        << "|" << _qty
         << "|" << getOrderTypeStr(static_cast<OrderType>(_orderType))
         << "|" << getSideTypeStr(static_cast<SideType>(_sideType))
         << "|" << getPriceTypeStr(static_cast<PriceType>(_priceType))
         << "|" << getExecTypeStr(static_cast<ExecType>(_execType))
+        << "|" << (_sideType == BUY ? _qty : _qty*-1)
+        << "|" << _price
         << "|" << _orderID << std::endl;
 }
 

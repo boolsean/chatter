@@ -1,8 +1,10 @@
 #include "order.h"
 #include "centralpost.h"
+
+#include "timeutils.h"
 #include <stdlib.h>
 #include <list>
-
+#include <iostream>
 
 using namespace gdm;
 
@@ -40,17 +42,19 @@ static Order genNewOrder(Order::symbolid_t sid=1, const char* sym="SPY")
 int main()
 {
 
-    centralPost.postOrder(Order(SID, SYM, 210.12, 100, Order::NEW, Order::BUY,
-                Order::LMT, Order::DAY, OID));
-
-    centralPost.postOrder(Order(SID, SYM, 210.12+PX_INC, 100, Order::NEW, Order::BUY,
-                Order::LMT, Order::DAY, OID+1));
-
-    centralPost.postOrder(Order(SID, SYM, 210.12+PX_INC, 100, Order::NEW, Order::BUY,
-                Order::LMT, Order::DAY, OID+2));
+    gdmtime_t before = getTimeNow();
+    gdmtime_t after = getTimeNow();
 
     centralPost.postOrder(genNewOrder());
+    centralPost.postOrder(genNewOrder());
+    centralPost.postOrder(genNewOrder());
+    centralPost.postOrder(genNewOrder());
+    centralPost.postOrder(genNewOrder());
+    centralPost.postOrder(genNewOrder());
+    centralPost.postOrder(genNewOrder());
 
+    std::cout << "curtime:" << getTimeAsStr(before) << std::endl;
+    std::cout << "curtime:" << getTimeAsStr(after) << std::endl;
 
     std::list<Order> orders;
 
