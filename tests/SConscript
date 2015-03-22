@@ -1,6 +1,7 @@
 env = Environment()
 
 env.Append(CCFLAGS=['-g'])
+env.Append(CPPPATH=['../../calc'])
 env.Append(CPPPATH=['../../nt'])
 env.Append(CPPPATH=['../../data'])
 env.Append(CPPPATH=['../../driver'])
@@ -20,5 +21,6 @@ env.Program(target="testZmqClient.out", source=['testZmqClient.cpp'])
 env.Program(target="testZmqSubscriber.out", source=['testZmqSubscriber.cpp'])
 env.Program(target="testMarket.out", source=['testMarket.cpp'])
 env.Program(target="testCSVFiller.out", source=['testCSVFiller.cpp'])
+env.Program(target="testUtils.out", source=['testUtils.cpp'])
 
 
