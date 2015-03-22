@@ -6,13 +6,15 @@ env.Append(CPPPATH=['../../nt'])
 env.Append(CPPPATH=['../../data'])
 env.Append(CPPPATH=['../../driver'])
 env.Append(CPPPATH=['../../filler'])
+env.Append(CPPPATH=['../../match'])
 
 env.Append(LIBPATH=['../../nt/bin'])
 env.Append(LIBPATH=['../../data/bin'])
 env.Append(LIBPATH=['../../driver/bin'])
 env.Append(LIBPATH=['../../filler/bin'])
+env.Append(LIBPATH=['../../match/bin'])
 
-env.Append(LIBS=['zmq', 'nt', 'data', 'driver', 'filler', 'boost_date_time'])
+env.Append(LIBS=['zmq', 'nt', 'data', 'driver', 'filler', 'match', 'boost_date_time'])
 
 
 
@@ -20,6 +22,8 @@ env.Program(target="testZmqServer.out", source=['testZmqServer.cpp'])
 env.Program(target="testZmqClient.out", source=['testZmqClient.cpp'])
 env.Program(target="testZmqSubscriber.out", source=['testZmqSubscriber.cpp'])
 env.Program(target="testMarket.out", source=['testMarket.cpp'])
+env.Program(target="testCentralPost.out", source=['testCentralPost.cpp'])
+
 env.Program(target="testCSVFiller.out", source=['testCSVFiller.cpp'])
 env.Program(target="testUtils.out", source=['testUtils.cpp'])
 

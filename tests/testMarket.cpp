@@ -1,6 +1,10 @@
 #include "marketdata.h"
 #include "ohlcdata.h"
 #include "stubplayer.h"
+
+#include "order.h"
+
+
 #include <iostream>
 
 gdm::MarketData getSample(const std::string& symbol="SPY")
@@ -67,6 +71,13 @@ int main()
     for(gdm::OHLCData::date2ohlc_cit_t it = dm.begin(); it != dm.end(); it++) {
         it->second.pretty();
     }
+
+/*    gdm::Order order(1, "SPY", 210.50, 200, 0, 0, 0, 1, 102948211);*/
+/**/
+/*    order.pretty();*/
+/**/
+/*    order.setSideType(gdm::Order::SELL);*/
+/*    order.pretty();*/
 
     return 0;
 }

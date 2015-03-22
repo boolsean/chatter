@@ -1,5 +1,9 @@
 env = Environment()
 
+
+env.Append(CPPPATH=['../../data'])
+
+
 sources = ['centralpost.cpp']
 
 env.StaticLibrary('match', sources)

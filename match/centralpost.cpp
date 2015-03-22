@@ -6,13 +6,22 @@ CentralPost::CentralPost()
 {
 }
 
-bool CentralPost::postOrder()
+bool CentralPost::postOrder(const Order& order)
 {
+    if(_orders.count(order.getOrderID()) > 0)
+        return false;
+
+    _orders[order.getOrderID()] = order;
     return true;
 }
 
-int CentralPost::getOrders()
+int CentralPost::getOrders(std::list<Order>& orders)
 {
+    orders.clear();
+
+    for(id2ordermap_cit_t it = _orders.begin(); it != _orders.end(); it++) {
+        orders.push_back(it->second);
+    }
     return 0;
 }
 
