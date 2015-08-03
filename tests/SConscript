@@ -3,24 +3,34 @@ Import('env')
 
 env = env.Clone()
 
+dir = "debug"
+mymode = ARGUMENTS.get('mode', 'debug')
+
+if mymode == "release":
+    dir = 'release'
+
 #env = Environment()
 
 #env.Append(CCFLAGS=['-g'])
 env.Append(CPPPATH=['../../util'])
 env.Append(CPPPATH=['../../calc'])
 env.Append(CPPPATH=['../../nt'])
+env.Append(CPPPATH=['../../jsonlib'])
 env.Append(CPPPATH=['../../data'])
 env.Append(CPPPATH=['../../driver'])
 env.Append(CPPPATH=['../../filler'])
-env.Append(CPPPATH=['../../match'])
+#env.Append(CPPPATH=['../../match'])
+env.Append(CPPPATH=['../../chat'])
 
-env.Append(LIBPATH=['../../nt/bin'])
-env.Append(LIBPATH=['../../data/bin'])
-env.Append(LIBPATH=['../../driver/bin'])
-env.Append(LIBPATH=['../../filler/bin'])
-env.Append(LIBPATH=['../../match/bin'])
+env.Append(LIBPATH=['../../nt/'+dir])
+env.Append(LIBPATH=['../../jsonlib/'+dir])
+env.Append(LIBPATH=['../../data/'+dir])
+env.Append(LIBPATH=['../../driver/'+dir])
+env.Append(LIBPATH=['../../filler/'+dir])
+#env.Append(LIBPATH=['../../match/'+dir])
+env.Append(LIBPATH=['../../chat/'+dir])
 
-env.Append(LIBS=['zmq', 'nt', 'data', 'driver', 'filler', 'match', 'boost_date_time'])
+env.Append(LIBS=['zmq', 'nt', 'json', 'data', 'driver', 'filler', 'match', 'chat', 'boost_date_time', 'boost_system', 'boost_thread-mt'])
 
 
 
@@ -28,9 +38,22 @@ env.Program(target="testZmqServer.out", source=['testZmqServer.cpp'])
 env.Program(target="testZmqClient.out", source=['testZmqClient.cpp'])
 env.Program(target="testZmqSubscriber.out", source=['testZmqSubscriber.cpp'])
 env.Program(target="testMarket.out", source=['testMarket.cpp'])
-env.Program(target="testCentralPost.out", source=['testCentralPost.cpp'])
+#env.Program(target="testCentralPost.out", source=['testCentralPost.cpp'])
 
 env.Program(target="testCSVFiller.out", source=['testCSVFiller.cpp'])
 env.Program(target="testUtils.out", source=['testUtils.cpp'])
+
+env.Program(target="testChatClient.out", source=['testChatClient.cpp'])
+env.Program(target="testChatServer.out", source=['testChatServer.cpp'])
+
+env.Program(target="testMonitor.out", source=['testMonitor.cpp'])
+
+#env.Program(target="testMarketClient.out", source=['testMarketClient.cpp'])
+#env.Program(target="testMarketServer.out", source=['testMarketServer.cpp'])
+
+env.Program(target="testJSON.out", source=['testJSON.cpp'])
+
+env.Program(target="testJSONServer.out", source=['testJSONServer.cpp'])
+env.Program(target="testJSONClient.out", source=['testJSONClient.cpp'])
 
 

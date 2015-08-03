@@ -1,0 +1,5 @@
+env = Environment()
+
+sources = ['chatmessage.cpp']
+
+env.StaticLibrary('chat', sources)

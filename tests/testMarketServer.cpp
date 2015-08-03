@@ -5,6 +5,9 @@
 #include "order.h"
 
 
+#include <zmq.hpp>
+
+
 #include <iostream>
 
 gdm::MarketData getSample(const std::string& symbol="SPY")
@@ -25,7 +28,7 @@ gdm::MarketData getSample(const std::string& symbol="SPY")
     return md;
 }
 
-int main()
+int main(int argc, char** argv)
 {
     gdm::MarketData sample = getSample("STAG");
     sample.pretty();

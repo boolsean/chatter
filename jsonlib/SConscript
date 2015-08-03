@@ -1,0 +1,5 @@
+env = Environment()
+
+sources = ['jsoncpp.cpp']
+
+env.StaticLibrary('json', sources)
